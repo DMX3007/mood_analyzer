@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - nlp-service
+    environment:
+      - NODE_ENV=production
+      - NLP_SERVICE_URL=http://nlp-service:5001
+
+  nlp-service:
+    build:
+      context: ./nlp-service
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_APP=sentiment_analysis.py
