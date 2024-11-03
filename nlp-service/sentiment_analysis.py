@@ -2,12 +2,11 @@ from flask import Flask, request, jsonify
 from transformers import pipeline
 
 app = Flask(__name__)
-# sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
-# sentiment_analyzer = pipeline("sentiment-analysis", model="DeepPavlov/rubert-base-cased-sentiment")
+# sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")  # eng
+# sentiment_analyzer = pipeline("sentiment-analysis", model="DeepPavlov/rubert-base-cased-sentiment") # paid rus
 # Use an open-access model for Russian sentiment analysis
-# sentiment_analyzer = pipeline("sentiment-analysis", model="cointegrated/rubert-tiny2")
-sentiment_analyzer = pipeline("sentiment-analysis", model="sismetanin/sbert-ru-sentiment-rureviews")
-
+# sentiment_analyzer = pipeline("sentiment-analysis", model="cointegrated/rubert-tiny2") # bad rus
+sentiment_analyzer = pipeline("sentiment-analysis", model="sismetanin/sbert-ru-sentiment-rureviews") # rus
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
